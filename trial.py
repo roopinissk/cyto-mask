@@ -6,7 +6,7 @@ import torch
 from torch.utils.data import DataLoader, TensorDataset
 import torchvision.transforms as transforms
 
-file = "./Composite_with_masks.tif"
+file = "/gpfs/home/rs9522/cyto-mask/Composite_with_masks.tif"
 img = tiff.imread(file)
 print(img.shape)
 
@@ -22,14 +22,14 @@ X_train, X_test, y_train, y_test = train_test_split(bf, mask, test_size=0.2, ran
 
 # convert the np arrays to tensors
 
-X_train_tensor = torch.tensor(X_train / 255.0, dtype=torch.float32)
+X_train_tensor = torch.tensor(X_train /255.0, dtype=torch.float32)
 X_test_tensor = torch.tensor(X_test /255.0, dtype= torch.float32)
 y_train_tensor = torch.tensor(y_train, dtype= torch.float32)
 y_test_tensor = torch.tensor(y_test, dtype= torch.float32)
 
 print("size after rescale: ",  X_train_tensor.shape)
 
-# now make a tensor dataset
+# not make a tensor dataset
 
 train_data = TensorDataset(X_train_tensor, y_train_tensor)
 test_data = TensorDataset(X_test_tensor, y_test_tensor)
@@ -55,5 +55,3 @@ plt.imshow(y_train_tensor[0].cpu().numpy(), cmap= "gray")
 plt.axis("off")
 plt.savefig("test_img_mask.png")
 plt.show()
-
-# images are rescaled, and are in grayscale

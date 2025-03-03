@@ -1,2 +1,6 @@
 *.tif
 .DS_Store
+.venv/*
+dataset/*
+*.png
+*.jpg
