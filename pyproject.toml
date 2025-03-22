@@ -1,0 +1,14 @@
+[project]
+name = "cyto-mask"
+version = "0.1.0"
+description = "Cell mask prediction from brightfield images"
+dependencies = [
+    "matplotlib>=3.10.1",
+    "numpy>=2.2.4",
+    "opencv-python>=4.11.0.86",
+    "pillow>=11.1.0",
+    "scikit-image>=0.25.2",
+    "tifffile>=2025.3.13",
+    "tqdm>=4.67.1",
+]
+
