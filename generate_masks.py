@@ -27,6 +27,7 @@ for i in tqdm(range(0, bf.shape[0]), desc="Saving brightfield and mask images"):
     # Save brightfield image
     bfi = bf[i]
     io.imsave(f'./dataset/bf/{i}.png', bfi)
+
     
     # Save mask image
     maski = mask[i].astype(np.uint8)
@@ -55,35 +56,36 @@ for i in tqdm(range(0, bf.shape[0]), desc="Saving brightfield and mask images"):
     
     print(f"Created {mask_count} binary masks for frame {i}")
 
-# Visualization example for the first frame
-if mask.shape[0] > 0:
-    # Get the first mask
-    mask_0 = mask[0].astype(np.uint8)
-    unique_colors = np.unique(mask_0)
-    
-    # Create a figure to visualize original and binary masks
-    n_colors = len(unique_colors)
-    fig, axes = plt.subplots(1, n_colors + 1, figsize=(5 * (n_colors + 1), 5))
-    
-    # Plot the original mask
-    axes[0].imshow(mask_0, cmap='nipy_spectral')
-    axes[0].set_title('Original Mask')
-    axes[0].axis('off')
-    
-    # Plot binary masks
-    for idx, color in enumerate(unique_colors):
-        if color == 0 and len(unique_colors) > 1:  # Skip background if it's not the only value
-            continue
-            
-        binary_mask = np.where(mask_0 == color, 1, 0)
-        ax_idx = idx + 1 if color != 0 else 1
-        if ax_idx < len(axes):
-            axes[ax_idx].imshow(binary_mask, cmap='gray')
-            axes[ax_idx].set_title(f'Binary Mask: Color {color}')
-            axes[ax_idx].axis('off')
-    
-    plt.tight_layout()
-    plt.savefig('./dataset/visualization.png')
-    plt.close()
 
-print("Processing complete!")
+# # Visualization example for the first frame
+# if mask.shape[0] > 0:
+#     # Get the first mask
+#     mask_0 = mask[0].astype(np.uint8)
+#     unique_colors = np.unique(mask_0)
+    
+#     # Create a figure to visualize original and binary masks
+#     n_colors = len(unique_colors)
+#     fig, axes = plt.subplots(1, n_colors + 1, figsize=(5 * (n_colors + 1), 5))
+    
+#     # Plot the original mask
+#     axes[0].imshow(mask_0, cmap='nipy_spectral')
+#     axes[0].set_title('Original Mask')
+#     axes[0].axis('off')
+    
+#     # Plot binary masks
+#     for idx, color in enumerate(unique_colors):
+#         if color == 0 and len(unique_colors) > 1:  # Skip background if it's not the only value
+#             continue
+            
+#         binary_mask = np.where(mask_0 == color, 1, 0)
+#         ax_idx = idx + 1 if color != 0 else 1
+#         if ax_idx < len(axes):
+#             axes[ax_idx].imshow(binary_mask, cmap='gray')
+#             axes[ax_idx].set_title(f'Binary Mask: Color {color}')
+#             axes[ax_idx].axis('off')
+    
+#     plt.tight_layout()
+#     plt.savefig('./dataset/visualization.png')
+#     plt.close()
+
+# print("Processing complete!")
