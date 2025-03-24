@@ -4,6 +4,7 @@ import random
 import glob
 from tqdm import tqdm
 from PIL import Image
+import json
 import shutil  # Added missing import
 
 # Set random seed for reproducibility
@@ -53,33 +54,36 @@ random.seed(0)
 #     return new_img_path
 
 
-
-def rotate(img_path, output_dir):
+def rotate(img_path, output_dir, rotation_degrees):
     random_degree = random.randrange(45, 305)
     base = os.path.basename(img_path)
     base_name, _ = os.path.splitext(base)
     new_filename = f"{base_name}_rotated{random_degree}_.png"
     new_img_path = os.path.join(output_dir, new_filename)
     
+    # Save the rotation degree
+    rotation_degrees[base] = random_degree
+    
     # Most libraries have an 'expand' parameter to prevent cropping
     imaugs.rotate(image=img_path, output_path=new_img_path, degrees=random_degree)
     return new_img_path
-
-    
 
 def augment_brightfield_images(bf_dir, output_dir="dataset/augment"):
     os.makedirs(output_dir, exist_ok=True)
     bf_images = glob.glob(os.path.join(bf_dir, "*.png"))
     print(f"Found {len(bf_images)} brightfield images in {bf_dir}")
     
+    rotation_degrees = {}
     for img_path in tqdm(bf_images, desc="Processing images"):
         # Save directly to output_dir
-        rotate(img_path, output_dir)
-        
+        rotate(img_path, output_dir, rotation_degrees)
+    
+    # Save rotation degrees to a file
+    with open('rotation_degrees.json', 'w') as f:
+        json.dump(rotation_degrees, f)
+
 # Call the function
 augment_brightfield_images("./dataset/bf", output_dir="dataset/augment")
-
-
 # def identity(_):
 #     pass
 

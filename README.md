@@ -48,3 +48,8 @@ Batches and epochs
 
 Model Evaluation
 
+
+### augmentation
+1. tranform - flipping
+2. manually add noise
+3. try on fiji
