@@ -10,5 +10,9 @@ dependencies = [
     "scikit-image>=0.25.2",
     "tifffile>=2025.3.13",
     "tqdm>=4.67.1",
+    "tensorflow>=2.8,<2.12",  # TensorFlow version compatible with segmentation-models
+    "keras>=2.8,<2.12",       # Keras version compatible with TensorFlow
+    "segmentation-models==1.0.1",
+    "efficientnet==1.0.0"
 ]
 

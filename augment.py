@@ -68,7 +68,7 @@ def rotate(img_path, output_dir, rotation_degrees):
     imaugs.rotate(image=img_path, output_path=new_img_path, degrees=random_degree)
     return new_img_path
 
-def augment_brightfield_images(bf_dir, output_dir="dataset/augment"):
+def augment_brightfield_images(bf_dir, output_dir="450_dataset/augment"):
     os.makedirs(output_dir, exist_ok=True)
     bf_images = glob.glob(os.path.join(bf_dir, "*.png"))
     print(f"Found {len(bf_images)} brightfield images in {bf_dir}")
@@ -79,11 +79,11 @@ def augment_brightfield_images(bf_dir, output_dir="dataset/augment"):
         rotate(img_path, output_dir, rotation_degrees)
     
     # Save rotation degrees to a file
-    with open('rotation_degrees.json', 'w') as f:
+    with open('450_rotation_degrees.json', 'w') as f:
         json.dump(rotation_degrees, f)
 
 # Call the function
-augment_brightfield_images("./dataset/bf", output_dir="dataset/augment")
+augment_brightfield_images("./450_dataset/bf_images", output_dir="450_dataset/augment")
 # def identity(_):
 #     pass
 

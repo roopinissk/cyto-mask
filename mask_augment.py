@@ -11,7 +11,7 @@ import shutil  # Added missing import
 random.seed(0)
 
 # Load rotation degrees from file
-with open('rotation_degrees.json', 'r') as f:
+with open('450_rotation_degrees.json', 'r') as f:
     rotation_degrees = json.load(f)
 
 adjusted_rotation_degrees = {f"merged_edges_{key}": value for key, value in rotation_degrees.items()}
@@ -19,8 +19,8 @@ adjusted_rotation_degrees = {f"merged_edges_{key}": value for key, value in rota
 print("Keys in adjusted_rotation_degrees:", adjusted_rotation_degrees.keys())
 
 # augment_path = "dataset/augment"
-augment_ground_truth_path = "/home/suriya/cyto-mask/merged_edge_detected_cells"
-output_dir = "dataset/augment_ground_truth"
+augment_ground_truth_path = "/home/suriya/cyto-mask/450_dataset/merged_edge_detected_cells"
+output_dir = "450_dataset/augment_ground_truth"
 os.makedirs(output_dir, exist_ok=True)
 
 def rotate(augment_ground_truth_path, output_dir, degrees):
@@ -33,7 +33,7 @@ def rotate(augment_ground_truth_path, output_dir, degrees):
     imaugs.rotate(image=augment_ground_truth_path, output_path=new_img_path, degrees=degrees)
     return new_img_path
 
-def augment_gr_images(augment_ground_truth_path, output_dir="dataset/augment_ground_truth"):
+def augment_gr_images(augment_ground_truth_path, output_dir="450_dataset/augment_ground_truth"):
     os.makedirs(output_dir, exist_ok=True)
     gt_images = sorted(glob.glob(os.path.join(augment_ground_truth_path, "*.png")))
     print(f"Found {len(gt_images)} ground truth images in {augment_ground_truth_path}")
@@ -47,4 +47,4 @@ def augment_gr_images(augment_ground_truth_path, output_dir="dataset/augment_gro
             print(f"No rotation degree found for {base}")
 
 # Call the function
-augment_gr_images("/home/suriya/cyto-mask/merged_edge_detected_cells", output_dir="dataset/augment_ground_truth")
+augment_gr_images("/home/suriya/cyto-mask/450_dataset/merged_edge_detected_cells", output_dir="450_dataset/augment_ground_truth")
