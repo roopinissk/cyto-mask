@@ -4,3 +4,14 @@
 dataset/*
 *.png
 *.jpg
+sam_vit_h_4b8939.pth
+unet_model.h5
+vit_l.pt
+sam2/checkpoints
+notebook/*.pt
+*.pt
+*.pth
+*.tar
+50_dataset
+Zak
+*.npy
