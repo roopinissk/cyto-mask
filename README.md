@@ -34,7 +34,7 @@ Tried inferencing through the object based detection; Gives a satisfactory outpu
 
 SAM2 (Transformer-based): A variant of the SAM (Segment Anything Model), leveraging transformer-based architectures for efficient and high-quality image segmentation, especially in complex and varied datasets.
 
-microSAM (ViT_L_LM): A micro version of SAM that utilizes Vision Transformer (ViT) with a large model (ViT_L) for improved segmentation performance in smaller and more detailed images, optimizing efficiency and accuracy.
+microSAM (vit_l_lm): A micro version of SAM that utilizes Vision Transformer (ViT) with a large model (ViT_L) for improved segmentation performance in smaller and more detailed images, optimizing efficiency and accuracy.
 
 Mask Region-based Convolutional Neural Network (Mask R-CNN): An extension of Faster R-CNN that not only detects objects in an image but also generates pixel-wise segmentation masks for each detected object, enabling more precise object localization.
 
