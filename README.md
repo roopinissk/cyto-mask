@@ -1,17 +1,15 @@
 # cyto-mask
 ## Cytoplasm mask generation using deep learning
 
-Aim: To build a deep learning model to predict cytoplasmic masks from brightfield images
+Aim: Predicting cytoplasmic masks from bright field microscopy images.
+Methods: Train, hyperparameter tune, and compare various NN (U-net, SAM2 (transformer-based), microSAM (vit_l_lm), and Mask Region-based Convolutional Neural Network).
 
 ### Data
 Images were collected from HCT116 colorectal cancer cell line
 550 original images clicked augmented to 1000
 Augmentation method applied - Rotation
 
-We tried gaussian blur
-reducing noise and adding noise
-
-But, these techniques did not work as the images we worked with in itself were very noisy so we stuck to just rotations
+Dataset can be found [here](https://www.kaggle.com/datasets/rubyssk/cytomask-microscopy-images)
 
 ### Image preprocessing
 Data extraction
@@ -30,9 +28,17 @@ Validation 10%
 Testing 10%
 
 ### Selection of Model
-I want to try and replicate this paper. They use Cyto R-CNN, a new architecture for whole-cell segmentation. Their dataset used H&E stained images (histopath slides)
 
-Other architectures to explore - ResNet, UNet (transformer-based)
+U-Net: A deep learning architecture for semantic segmentation that uses an encoder-decoder structure with skip connections to capture spatial hierarchies in images, particularly effective in medical image segmentation.
+Tried inferencing through the object based detection; Gives a satisfactory output so far, planning to train the model and check the results.
+
+SAM2 (Transformer-based): A variant of the SAM (Segment Anything Model), leveraging transformer-based architectures for efficient and high-quality image segmentation, especially in complex and varied datasets.
+
+microSAM (ViT_L_LM): A micro version of SAM that utilizes Vision Transformer (ViT) with a large model (ViT_L) for improved segmentation performance in smaller and more detailed images, optimizing efficiency and accuracy.
+
+Mask Region-based Convolutional Neural Network (Mask R-CNN): An extension of Faster R-CNN that not only detects objects in an image but also generates pixel-wise segmentation masks for each detected object, enabling more precise object localization.
+
+
 
 Model architecture experiments
 Input - greyscale image; maybe we can experiment with different channels
@@ -44,9 +50,12 @@ Loss
 Optimizer
 Batches and epochs
 
-### Other models explored
-1. Diffusion based models 
-2. MicroSAM
-3. SAM2 - Tried inferencing through the object based detection; Gives a satisfactory output so far, planning to train the model and check the results.
-4. Unet - a pretrained unet on generic dataset was tried, This basically just gave a black image with a white line as an output
+
+## Directories
+
+Models - code to instantiate, explore, train, hyperparameter tune, and test models.
+
+Config - config files used to map augmented images to original ones and configuration for png to rle format processing. 
+
+Preprocess - code to extract images from tiff format, clean images, generate masks and contours for ground truth. 
 
