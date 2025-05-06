@@ -50,6 +50,15 @@ Loss
 Optimizer
 Batches and epochs
 
+## Collaborators 
+Ruby Kumar - Data collection, image pre-processing, SAM2 model training and evaluation
+
+Jonathan Amsalem - Image pre-processing, MicroSAM model training and evaluation
+
+Divya Rallapalli - Unet model training and evaluation
+
+Zak Aminzada - Mask R-CNN model training and evaluation
+
 
 ## Directories
 
