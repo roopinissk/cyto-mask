@@ -6,7 +6,7 @@ Methods: Train, hyperparameter tune, and compare various NN (U-net, SAM2 (transf
 
 ### Data
 Images were collected from HCT116 colorectal cancer cell line
-550 original images clicked augmented to 1000
+540 original images clicked augmented to 1000
 Augmentation method applied - Rotation
 
 Dataset can be found [here](https://www.kaggle.com/datasets/rubyssk/cytomask-microscopy-images)
